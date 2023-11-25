@@ -54,4 +54,10 @@ public class TileMapManager : MonoBehaviour
     {
         tile.sprite = _sprite[(int)tile.type][tile.temperature];
     }
+
+    public Data_Tile getData(Tile tile)
+    {
+        Vector3 tilePosition = tile.transform.GetPosition();
+        return _data[(int)tilePosition.x][(int)tilePosition.y];
+    }
 }
