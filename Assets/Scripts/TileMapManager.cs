@@ -16,7 +16,7 @@ public class TileMapManager : MonoBehaviour
 
     public class Data_Tile
     {
-        public GameObject tile;
+        public Tile tile;
         public int temperature = 1;
         public bool cristalIsPresent;
         public TypeTile type;
@@ -26,13 +26,13 @@ public class TileMapManager : MonoBehaviour
     private Sprite[][] _sprite;
 
     [SerializeField]
-    private TileMap _tilemap;
+    public Tilemap tileMap;
 
     [SerializeField]
-    public Vector2 topRight;
+    public Vector2Int topRight;
 
     [SerializeField]
-    public Vector2 bottomLeft;
+    public Vector2Int bottomLeft;
 
     [SerializeField] public Data_Tile[][] _data;
 
@@ -43,14 +43,14 @@ public class TileMapManager : MonoBehaviour
         {
             for (int j = 0; j < size.y; j++)
             {
-                _data[j][i].tile = _tilemap.GetTile(new Vector2(bottomLeft.x + i, topRight.y - j));
+                _data[j][i].tile = tileMap.GetTile<Tile>(new Vector3Int(bottomLeft.x + i, topRight.y - j,0));
                 _data[j][i].sprite = _data[j][i].tile.GetComponent<Sprite>();
             }
         }
 
     }
 
-    public void updateTile(Data_Tile tile)
+    public void UpdateTile(Data_Tile tile)
     {
         tile.sprite = _sprite[(int)tile.type][tile.temperature];
     }
