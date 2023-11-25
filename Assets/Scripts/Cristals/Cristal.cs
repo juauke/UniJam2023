@@ -41,16 +41,16 @@ public class Cristal : MonoBehaviour
         Tile tile = tileMapManager.tileMap.GetTile<Tile>(tilePosition);
         tileMapManager.getData(tile).cristalIsPresent = true;
         gameObject.SetActive(true);
-        UpdateTiles();
+        UpdateTiles(-1);
 
     }
 
     public void Pick()
     {
         gameObject.SetActive(false);
-        UpdateTiles();
+        UpdateTiles(1);
     }
 
-    public virtual void UpdateTiles(){}
+    public virtual void UpdateTiles(int factor){}
     
 }

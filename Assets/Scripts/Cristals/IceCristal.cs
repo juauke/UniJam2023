@@ -13,7 +13,7 @@ public class IceCristal : Cristal
     }
 
 
-    public override void UpdateTiles()
+    public override void UpdateTiles(int factor)
     {
         Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(transform.position);
         int x = tilePosition.x;
@@ -26,7 +26,7 @@ public class IceCristal : Cristal
                 {
                     Tile tileToUpdate = tileMapManager.tileMap.GetTile<Tile>(new Vector3Int(x + i, y+i, 0));
                     
-                        tileMapManager.getData(tileToUpdate).temperature--;
+                        tileMapManager.getData(tileToUpdate).temperature += factor;
                     
                     tileMapManager.UpdateTile(tileMapManager.getData(tileToUpdate));
                     
