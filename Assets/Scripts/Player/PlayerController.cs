@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     public Cristal cristal= null;
 
     private Rigidbody2D rb;
+
+    [SerializeField]
+    private GameObject pauseMenuCanvas;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,7 +24,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenuCanvas.SetActive(!pauseMenuCanvas.activeSelf);
+        }
     }
 
     void FixedUpdate()
