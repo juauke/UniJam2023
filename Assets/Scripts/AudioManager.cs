@@ -15,6 +15,8 @@ public class PlayerAudioManager : MonoBehaviour {
     [SerializeField] private AudioClip takeSound;
     [SerializeField] private AudioClip dropSound;
     [SerializeField] private AudioClip climbLadderSound;
+    [SerializeField] private AudioClip victorySound;
+    [SerializeField] private AudioClip thunderSound;
 
 
 
@@ -46,6 +48,16 @@ public class PlayerAudioManager : MonoBehaviour {
     public void PlayDropSound()
     {
         audioSource.PlayOneShot(dropSound);
+    }
+
+    public void PlayVictorySound()
+    {
+        audioSource.PlayOneShot(victorySound);
+    }
+
+    public void PlayThunderSound()
+    {
+        audioSource.PlayOneShot(thunderSound);
     }
 
     public void PlayStepSound()
