@@ -20,13 +20,13 @@ public class TileMapManager : MonoBehaviour
         public int temperature = 1;
         public bool cristalIsPresent=false;
         public TypeTile type;
-        public Sprite sprite;
+        public Vector3Int position;
     }
     [SerializeField]
-    private Sprite[] _spriteFloor;
+    private Tile[] _tileFloor;
 
     [SerializeField]
-    private Sprite[] _spriteWater;
+    private Tile[] _tileWater;
 
     [SerializeField]
     public Tilemap tileMap;
@@ -37,8 +37,6 @@ public class TileMapManager : MonoBehaviour
     
     public Data_Tile[,] _data=new Data_Tile[50,50];
 
-    [SerializeField] private GameObject _boxCollider2D;
-
     public void Awake()
     {
         var size = topRight - bottomLeft;
@@ -47,15 +45,16 @@ public class TileMapManager : MonoBehaviour
             for (int j = 0; j <= size.y; j++)
             {
                 _data[j,i]=new Data_Tile();
+                _data[j,i].position= new Vector3Int(bottomLeft.x + i, topRight.y - j, 0);
                 _data[j,i].tile = 
                     tileMap.GetTile<Tile>(
                     new Vector3Int(
                         bottomLeft.x + i, 
                         topRight.y - j,
                         0)
-                    );
-                _data[j,i].sprite = _data[j,i].tile.sprite;
-                switch (_data[j,i].sprite.name)
+                    );;
+                Debug.Log(_data[j, i].tile.name);
+                switch (_data[j,i].tile.name)
                 { 
                     case "casebase" :
                         _data[j,i].type = TypeTile.Floor;
@@ -79,18 +78,6 @@ public class TileMapManager : MonoBehaviour
                         break;
 
                 }
-
-                if (_data[j, i].type == TypeTile.Wall)
-                {
-                    _data[j, i].tile.colliderType = Tile.ColliderType.Sprite;
-                }
-                if (_data[j, i].type == TypeTile.Water)
-                {
-                    if (_data[j, i].temperature == 0)
-                    {
-                        _data[j, i].tile.colliderType = Tile.ColliderType.Sprite;
-                    }
-                }
             }
         }
 
@@ -103,27 +90,30 @@ public class TileMapManager : MonoBehaviour
             case TypeTile.Floor:
                 if (tile.temperature < 1)
                 {
-                    tile.sprite = _spriteWater[0];
+                    tileMap.SetTile(tile.position, _tileFloor[0]);
+                    tile.tile = _tileFloor[0];
                 }
                 else if (tile.temperature > 1)
                 {
-                    tile.sprite = _spriteWater[2];
+                    tileMap.SetTile(tile.position, _tileFloor[2]);
+                    tile.tile = _tileFloor[2];
                 }
                 else
                 {
-                    tile.sprite = _spriteWater[1];
+                    tileMap.SetTile(tile.position, _tileFloor[1]);
+                    tile.tile = _tileFloor[1];
                 }
                 break;
             case TypeTile.Water:
                 if (tile.temperature < 1)
                 {
-                    tile.sprite = _spriteWater[0];
-                    tile.tile.colliderType = Tile.ColliderType.Sprite;
+                    tileMap.SetTile(tile.position, _tileWater[0]);
+                    tile.tile = _tileWater[0];
                 }
                 else
                 {
-                    tile.sprite = _spriteWater[1];
-                    tile.tile.colliderType = Tile.ColliderType.None;
+                    tileMap.SetTile(tile.position, _tileWater[1]);
+                    tile.tile = _tileWater[1];
                 }
 
                 break;
