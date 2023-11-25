@@ -25,26 +25,26 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Z))
         {
             rb.MovePosition(new Vector3(0, 1 * speed * Time.deltaTime, 0) + transform.position);
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             rb.MovePosition(new Vector3(0, -1 * speed * Time.deltaTime, 0) + transform.position);
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.Q))
         {
             rb.MovePosition(new Vector3(-1 * speed * Time.deltaTime, 0, 0) + transform.position);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             rb.MovePosition(new Vector3(1 * speed * Time.deltaTime, 0, 0) + transform.position);
         }
-        if (Input.GetKey(KeyCode.Space) && cristal.IsUnityNull())
+        if (Input.GetKeyUp(KeyCode.Space) && !cristal)
         {
            cristal.Place(transform.position);
         }
