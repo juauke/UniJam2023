@@ -18,7 +18,7 @@ public class TileMapManager : MonoBehaviour
     {
         public Tile tile;
         public int temperature = 1;
-        public bool cristalIsPresent;
+        public bool cristalIsPresent=false;
         public TypeTile type;
         public Sprite sprite;
     }
@@ -31,13 +31,13 @@ public class TileMapManager : MonoBehaviour
     [SerializeField]
     public Tilemap tileMap;
 
-    [SerializeField]
     public Vector2Int topRight;
 
-    [SerializeField]
     public Vector2Int bottomLeft;
+    
+    public Data_Tile[,] _data=new Data_Tile[50,50];
 
-    [SerializeField] public Data_Tile[,] _data=new Data_Tile[50,50];
+    [SerializeField] private GameObject _boxCollider2D;
 
     public void Awake()
     {
@@ -79,6 +79,18 @@ public class TileMapManager : MonoBehaviour
                         break;
 
                 }
+
+                if (_data[j, i].type == TypeTile.Wall)
+                {
+                    _data[j, i].tile.colliderType = Tile.ColliderType.Sprite;
+                }
+                if (_data[j, i].type == TypeTile.Water)
+                {
+                    if (_data[j, i].temperature == 0)
+                    {
+                        _data[j, i].tile.colliderType = Tile.ColliderType.Sprite;
+                    }
+                }
             }
         }
 
@@ -93,9 +105,16 @@ public class TileMapManager : MonoBehaviour
                 break;
             case TypeTile.Water:
                 if (tile.temperature == 0)
+                {
                     tile.sprite = _spriteFloor[0];
+                    tile.tile.colliderType = Tile.ColliderType.Sprite;
+                }
                 else
+                {
                     tile.sprite = _spriteFloor[1];
+                    tile.tile.colliderType = Tile.ColliderType.None;
+                }
+
                 break;
         }
     }
