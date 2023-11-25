@@ -6,28 +6,27 @@ public class MainMenuController : MonoBehaviour {
 
 
     // Start is called before the first frame update
-    void Start() { MainMenuButton(); }
+    public void Start() { MainMenuButton(); }
 
     public void PlayNowButton() {
         // Play Now Button has been pressed, here you can initialize your game (For example Load a Scene called GameLevel etc.)
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
-    private void CreditsButton() {
+    public void CreditsButton() {
         // Show Credits Menu
         mainMenu.SetActive(false);
         creditsMenu.SetActive(true);
     }
 
-    private void MainMenuButton() {
+    public void MainMenuButton() {
         // Show Main Menu
         mainMenu.SetActive(true);
         creditsMenu.SetActive(false);
     }
 
-    private void QuitButton() {
+    public void QuitButton() {
         // Quit Game
         Application.Quit();
     }
-
 }
