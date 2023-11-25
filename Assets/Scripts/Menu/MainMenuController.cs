@@ -4,6 +4,7 @@ public class MainMenuController : MonoBehaviour {
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject creditsMenu;
 
+
     // Start is called before the first frame update
     void Start() { MainMenuButton(); }
 
@@ -28,4 +29,5 @@ public class MainMenuController : MonoBehaviour {
         // Quit Game
         Application.Quit();
     }
+
 }
