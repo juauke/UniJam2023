@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject pauseMenuCanvas;
 
+    private bool isSliding = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -51,9 +53,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.MovePosition(new Vector3(1 * speed * Time.deltaTime, 0, 0) + transform.position);
         }
-        if (Input.GetKeyUp(KeyCode.Space) && !cristal)
+        if (Input.GetKeyUp(KeyCode.Space) && cristal)
         {
            cristal.Place(transform.position);
+           
         }
     }
 

@@ -9,19 +9,24 @@ public class Cristal : MonoBehaviour
 {
     [SerializeField] private PlayerController player;
 
-    [SerializeField] private float sqrEpsilon;
-    
-    public enum Element {Ice, Fire, Elec};
+    [SerializeField] private float sqrEpsilon = 1;
+
+    public enum Element
+    {
+        Ice,
+        Fire,
+        Elec
+    };
 
     [SerializeField] protected TileMapManager tileMapManager;
 
-    protected Tile tile;
 
     public Element type;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -29,8 +34,9 @@ public class Cristal : MonoBehaviour
     {
         if ((transform.position - player.transform.position).sqrMagnitude <= sqrEpsilon &&
             !player.cristal &&
-            Input.GetKeyUp(KeyCode.Space))
+            Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("pick");
             player.cristal = this;
             gameObject.SetActive(false);
             UpdateTiles();
@@ -39,18 +45,18 @@ public class Cristal : MonoBehaviour
 
     public void Place(Vector3 position)
     {
-        player.cristal = null;
-        Vector3Int tilePosition = new Vector3Int((int)MathF.Floor(position.x), (int)MathF.Floor(position.y), 0);
-        Vector3 cristalPosition = new Vector3(MathF.Floor(position.x) + 0.5f, MathF.Floor(position.y) +0.5f, 0);
+        Debug.Log("place");
+        Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(position);
+        Vector3 cristalPosition = tileMapManager.tileMap.GetCellCenterLocal(tilePosition);
         transform.position = cristalPosition;
-        tile = tileMapManager.tileMap.GetTile<Tile>(tilePosition);
+        Tile tile = tileMapManager.tileMap.GetTile<Tile>(tilePosition);
+        tileMapManager.getData(tile).cristalIsPresent = true;
         gameObject.SetActive(true);
         UpdateTiles();
+        player.cristal = null;
 
     }
 
-    public void UpdateTiles()
-    {
-        
-    }
+    public virtual void UpdateTiles(){}
+    
 }

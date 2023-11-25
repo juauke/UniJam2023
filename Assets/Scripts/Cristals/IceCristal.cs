@@ -12,17 +12,13 @@ public class IceCristal : Cristal
         type = Element.Ice;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public new void UpdateTiles()
+    public override void UpdateTiles()
     {
-        Vector3 tilePosition = tile.transform.GetPosition();
-        int x = (int)tilePosition.x;
-        int y = (int)tilePosition.y;
+        //tileMapManager.tileMap.WorldToCell() position de la cellule
+        Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(transform.position);
+        int x = tilePosition.x;
+        int y = tilePosition.y;
         for (int i = -2; i <= 2; i++)
         {
             for (int j = -2; j <= 2; j++)
@@ -30,10 +26,9 @@ public class IceCristal : Cristal
                 if (math.abs(i * j) < 4)
                 {
                     Tile tileToUpdate = tileMapManager.tileMap.GetTile<Tile>(new Vector3Int(x + i, y+i, 0));
-                    if (tileMapManager.getData(tileToUpdate).temperature >-1)
-                    {
+                    
                         tileMapManager.getData(tileToUpdate).temperature--;
-                    }
+                    
                     tileMapManager.UpdateTile(tileMapManager.getData(tileToUpdate));
                     
                 }
