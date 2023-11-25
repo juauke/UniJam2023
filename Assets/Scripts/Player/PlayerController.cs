@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.MovePosition(new Vector3(1 * speed * Time.deltaTime, 0, 0) + transform.position);
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && cristal.IsUnityNull())
         {
            cristal.Place(transform.position);
         }

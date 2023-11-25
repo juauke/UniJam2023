@@ -25,7 +25,7 @@ public class Cristal : MonoBehaviour
     void Update()
     {
         if ((transform.position - player.transform.position).sqrMagnitude <= sqrEpsilon &&
-            Input.GetKeyDown("Space"))
+            Input.GetKeyUp(KeyCode.Space))
         {
             player.cristal = this;
             gameObject.SetActive(false);
