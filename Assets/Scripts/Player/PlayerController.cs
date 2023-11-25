@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int speed;
 
+    public Cristal cristal= null;
+
     private Rigidbody2D rb;
     void Start()
     {
@@ -41,5 +43,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.MovePosition(new Vector3(1 * speed * Time.deltaTime, 0, 0) + transform.position);
         }
+        if (Input.GetKey(KeyCode.Space))
+        {
+           cristal.Place(transform.position);
+        }
     }
+
 }

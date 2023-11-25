@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class Cristal : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    [SerializeField] private PlayerController player;
 
     [SerializeField] private float sqrEpsilon;
     
@@ -24,18 +24,19 @@ public class Cristal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((transform.position - player.position).sqrMagnitude <= sqrEpsilon &&
+        if ((transform.position - player.transform.position).sqrMagnitude <= sqrEpsilon &&
             Input.GetKeyDown("Space"))
         {
-            // Faire en sorte que le player récupère le cristal (attendre qu'il soit implémenté)
+            player.cristal = this;
             gameObject.SetActive(false);
         }
     }
 
     public void Place(Vector3 position)
     {
+        player.cristal = null;
         Vector3Int tilePosition = new Vector3Int((int)MathF.Floor(position.x), (int)MathF.Floor(position.y), (int)MathF.Floor(position.z));
         transform.position = tilePosition;
-        
+        gameObject.SetActive(true);
     }
 }
