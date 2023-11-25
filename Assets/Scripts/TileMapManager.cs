@@ -71,7 +71,7 @@ public class TileMapManager : MonoBehaviour
                     case "eaubase":
                         _data[j,i].type = TypeTile.Water;
                         break;
-                    case "eaugelée":
+                    case "eaugelï¿½e":
                         _data[j,i].type = TypeTile.Water;
                         break;
                     default:
@@ -85,7 +85,6 @@ public class TileMapManager : MonoBehaviour
 
     public void UpdateTile(Data_Tile tile)
     {
-        Debug.Log(tile.position);
         switch (tile.type)
         {
             case TypeTile.Floor:
@@ -123,6 +122,6 @@ public class TileMapManager : MonoBehaviour
 
     public Data_Tile getData(Vector3Int tilePosition)
     {
-        return _data[(int)tilePosition.x-bottomLeft.x,topRight.y-(int)tilePosition.y];
+        return _data[topRight.y-(int)tilePosition.y,(int)tilePosition.x-bottomLeft.x];
     }
 }

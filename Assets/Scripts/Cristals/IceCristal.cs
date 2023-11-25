@@ -14,10 +14,7 @@ public class IceCristal : Cristal
 
     void Start()
     {
-        Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(transform.position);
-        tileMapManager.getData(tilePosition).temperature--;
-                    
-        tileMapManager.UpdateTile(tileMapManager.getData(tilePosition));
+        UpdateTiles(-1);
     }
 
 

@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject AudioManager;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -79,7 +80,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 var colliderhit = Physics2D.Raycast(transform.position, lookingDirection, sqrEpsilon).collider;
-                if (colliderhit.gameObject.TryGetComponent<Cristal>(out cristal))
+                if (colliderhit && colliderhit.gameObject.TryGetComponent<Cristal>(out cristal))
                 {
                     cristal.Pick();
                     AudioManager.GetComponent<PlayerAudioManager>().PlayTakeSound();
