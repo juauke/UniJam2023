@@ -24,11 +24,12 @@ public class IceCristal : Cristal
             {
                 if (math.abs(i * j) < 4)
                 {
-                    Tile tileToUpdate = tileMapManager.tileMap.GetTile<Tile>(new Vector3Int(x + i, y+i, 0));
+                    var tileToUpdatePosition = new Vector3Int(x + i, y + i, 0);
+                    Tile tileToUpdate = tileMapManager.tileMap.GetTile<Tile>(tileToUpdatePosition);
                     
-                        tileMapManager.getData(tileToUpdate).temperature += factor;
+                        tileMapManager.getData(tileToUpdatePosition).temperature += factor;
                     
-                    tileMapManager.UpdateTile(tileMapManager.getData(tileToUpdate));
+                    tileMapManager.UpdateTile(tileMapManager.getData(tileToUpdatePosition));
                     
                 }
             }

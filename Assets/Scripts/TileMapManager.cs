@@ -85,6 +85,7 @@ public class TileMapManager : MonoBehaviour
 
     public void UpdateTile(Data_Tile tile)
     {
+        Debug.Log(tile.position);
         switch (tile.type)
         {
             case TypeTile.Floor:
@@ -120,9 +121,8 @@ public class TileMapManager : MonoBehaviour
         }
     }
 
-    public Data_Tile getData(Tile tile)
+    public Data_Tile getData(Vector3Int tilePosition)
     {
-        Vector3 tilePosition = tile.transform.GetPosition();
-        return _data[(int)tilePosition.x,(int)tilePosition.y];
+        return _data[(int)tilePosition.x-bottomLeft.x,topRight.y-(int)tilePosition.y];
     }
 }
