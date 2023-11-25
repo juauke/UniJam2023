@@ -14,20 +14,16 @@ public class Water : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+
+    public void ChangeWaterTemperature()
     {
-        TraversableCheck();
+        isFrozen = !isFrozen;
+        this.GetComponent <PolygonCollider2D>().enabled = !isFrozen;
     }
 
-    void TraversableCheck()
+    public void ChangeWaterConductivity()
     {
-        if (isFrozen)
-        {
-            this.GetComponent<PolygonCollider2D>().enabled = false;
-        }
-        else
-        {
-            this.GetComponent<PolygonCollider2D>().enabled = true;
-        }
+        isElectrified = !isElectrified;
     }
+
 }
