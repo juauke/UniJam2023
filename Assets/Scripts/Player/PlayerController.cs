@@ -22,12 +22,15 @@ public class PlayerController : MonoBehaviour
     private bool isSliding = false;
 
     [SerializeField]
-    private GameObject AudioManager;
+    private PlayerAudioManager playerAudioManager;
 
+    [SerializeField] private Sprite[] sprites;
+    private SpriteRenderer _spriteRenderer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,7 +39,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenuCanvas.SetActive(!pauseMenuCanvas.activeSelf);
-            AudioManager.GetComponent<PlayerAudioManager>().PlaySelectSound();
+            playerAudioManager.PlaySelectSound();
         }
     }
 
@@ -46,28 +49,36 @@ public class PlayerController : MonoBehaviour
         {
             rb.MovePosition(new Vector3(0, 1 * speed * Time.deltaTime, 0) + transform.position);
             lookingDirection = new Vector2 (0, 1);
-            AudioManager.GetComponent<PlayerAudioManager>().PlayStepSound();
+            playerAudioManager.PlayStepSound();
+            _spriteRenderer.sprite =sprites[0];
+            _spriteRenderer.flipX = false;
         }
 
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             rb.MovePosition(new Vector3(0, -1 * speed * Time.deltaTime, 0) + transform.position);
             lookingDirection =  new Vector2(0, -1);
-            AudioManager.GetComponent<PlayerAudioManager>().PlayStepSound();
+            playerAudioManager.PlayStepSound();
+            _spriteRenderer.sprite = sprites[1];
+            _spriteRenderer.flipX = false;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.A))
         {
             rb.MovePosition(new Vector3(-1 * speed * Time.deltaTime, 0, 0) + transform.position);
             lookingDirection =  new Vector2(-1, 0);
-            AudioManager.GetComponent<PlayerAudioManager>().PlayStepSound();
+            playerAudioManager.PlayStepSound();
+            _spriteRenderer.sprite = sprites[2];
+            _spriteRenderer.flipX = true;
         }
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             rb.MovePosition(new Vector3(1 * speed * Time.deltaTime, 0, 0) + transform.position);
             lookingDirection =  new Vector2(1, 0);
-            AudioManager.GetComponent<PlayerAudioManager>().PlayStepSound();
+            playerAudioManager.PlayStepSound();
+            _spriteRenderer.sprite = sprites[2];
+            _spriteRenderer.flipX = false;
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -75,7 +86,7 @@ public class PlayerController : MonoBehaviour
             {
                 cristal.Place(transform.position);
                 cristal = null;
-                AudioManager.GetComponent<PlayerAudioManager>().PlayDropSound();
+                playerAudioManager.PlayDropSound();
             }
             else
             {
@@ -83,7 +94,7 @@ public class PlayerController : MonoBehaviour
                 if (colliderhit && colliderhit.gameObject.TryGetComponent<Cristal>(out cristal))
                 {
                     cristal.Pick();
-                    AudioManager.GetComponent<PlayerAudioManager>().PlayTakeSound();
+                    playerAudioManager.PlayTakeSound();
                 }
             }
            
