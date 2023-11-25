@@ -16,6 +16,5 @@ public class ChangingTile : MonoBehaviour
     {
         _spriteRenderer.sprite = _sprites[Temperature];
     }
-
 }
 
