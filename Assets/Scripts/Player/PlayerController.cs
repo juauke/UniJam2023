@@ -69,10 +69,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("test if");
-                var colliderGameObject = Physics2D.Raycast(transform.position, lookingDirection, sqrEpsilon).collider.gameObject;
-                Debug.Log(colliderGameObject.TryGetComponent<Cristal>(out cristal));
-                if (colliderGameObject.TryGetComponent<Cristal>(out cristal))
+                var colliderhit = Physics2D.Raycast(transform.position, lookingDirection, sqrEpsilon).collider;
+                if (colliderhit.gameObject.TryGetComponent<Cristal>(out cristal))
                 {
                     cristal.Pick();
                     

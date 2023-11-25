@@ -15,9 +15,6 @@ public class IceCristal : Cristal
 
     public override void UpdateTiles()
     {
-        //tileMapManager.tileMap.WorldToCell() position de la cellule
-        Debug.Log(tileMapManager.tileMap);
-        Debug.Log(transform.position);
         Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(transform.position);
         int x = tilePosition.x;
         int y = tilePosition.y;

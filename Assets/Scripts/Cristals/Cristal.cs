@@ -35,7 +35,6 @@ public class Cristal : MonoBehaviour
 
     public void Place(Vector3 position)
     {
-        Debug.Log("place");
         Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(position);
         Vector3 cristalPosition = tileMapManager.tileMap.GetCellCenterLocal(tilePosition);
         transform.position = cristalPosition;
@@ -48,7 +47,6 @@ public class Cristal : MonoBehaviour
 
     public void Pick()
     {
-        Debug.Log("pick");
         gameObject.SetActive(false);
         UpdateTiles();
     }
