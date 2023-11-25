@@ -101,17 +101,28 @@ public class TileMapManager : MonoBehaviour
         switch (tile.type)
         {
             case TypeTile.Floor:
-                tile.sprite = _spriteFloor[tile.temperature];
+                if (tile.temperature < 1)
+                {
+                    tile.sprite = _spriteWater[0];
+                }
+                else if (tile.temperature > 1)
+                {
+                    tile.sprite = _spriteWater[2];
+                }
+                else
+                {
+                    tile.sprite = _spriteWater[1];
+                }
                 break;
             case TypeTile.Water:
-                if (tile.temperature == 0)
+                if (tile.temperature < 1)
                 {
-                    tile.sprite = _spriteFloor[0];
+                    tile.sprite = _spriteWater[0];
                     tile.tile.colliderType = Tile.ColliderType.Sprite;
                 }
                 else
                 {
-                    tile.sprite = _spriteFloor[1];
+                    tile.sprite = _spriteWater[1];
                     tile.tile.colliderType = Tile.ColliderType.None;
                 }
 
