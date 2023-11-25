@@ -28,11 +28,12 @@ public class Cristal : MonoBehaviour
     void Update()
     {
         if ((transform.position - player.transform.position).sqrMagnitude <= sqrEpsilon &&
-            player.cristal.IsUnityNull() &&
+            !player.cristal &&
             Input.GetKeyUp(KeyCode.Space))
         {
             player.cristal = this;
             gameObject.SetActive(false);
+            UpdateTiles();
         }
     }
 
@@ -44,6 +45,7 @@ public class Cristal : MonoBehaviour
         transform.position = cristalPosition;
         tile = tileMapManager.tileMap.GetTile<Tile>(tilePosition);
         gameObject.SetActive(true);
+        UpdateTiles();
 
     }
 

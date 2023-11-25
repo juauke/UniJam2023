@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -22,16 +23,20 @@ public class IceCristal : Cristal
         Vector3 tilePosition = tile.transform.GetPosition();
         int x = (int)tilePosition.x;
         int y = (int)tilePosition.y;
-        for (int i = -1; i <= 1; i++)
+        for (int i = -2; i <= 2; i++)
         {
-            for (int j = -1; j <= 1; j++)
+            for (int j = -2; j <= 2; j++)
             {
-                Tile tileToUpdate = tileMapManager.tileMap.GetTile<Tile>(new Vector3Int(x + i, y+i, 0));
-                if (tileMapManager.getData(tileToUpdate).temperature >-1)
+                if (math.abs(i * j) < 4)
                 {
-                    tileMapManager.getData(tileToUpdate).temperature--;
+                    Tile tileToUpdate = tileMapManager.tileMap.GetTile<Tile>(new Vector3Int(x + i, y+i, 0));
+                    if (tileMapManager.getData(tileToUpdate).temperature >-1)
+                    {
+                        tileMapManager.getData(tileToUpdate).temperature--;
+                    }
+                    tileMapManager.UpdateTile(tileMapManager.getData(tileToUpdate));
+                    
                 }
-                tileMapManager.UpdateTile(tileMapManager.getData(tileToUpdate));
             }
         }
     }
