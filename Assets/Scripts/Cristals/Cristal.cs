@@ -38,8 +38,7 @@ public class Cristal : MonoBehaviour
         Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(position);
         Vector3 cristalPosition = tileMapManager.tileMap.GetCellCenterLocal(tilePosition);
         transform.position = cristalPosition;
-        Tile tile = tileMapManager.tileMap.GetTile<Tile>(tilePosition);
-        tileMapManager.getData(tile).cristalIsPresent = true;
+        tileMapManager.getData(tilePosition).cristalIsPresent = true;
         gameObject.SetActive(true);
         UpdateTiles(-1);
 

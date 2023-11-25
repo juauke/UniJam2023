@@ -12,6 +12,14 @@ public class IceCristal : Cristal
         type = Element.Ice;
     }
 
+    void Start()
+    {
+        Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(transform.position);
+        tileMapManager.getData(tilePosition).temperature--;
+                    
+        tileMapManager.UpdateTile(tileMapManager.getData(tilePosition));
+    }
+
 
     public override void UpdateTiles(int factor)
     {
@@ -24,11 +32,12 @@ public class IceCristal : Cristal
             {
                 if (math.abs(i * j) < 4)
                 {
-                    Tile tileToUpdate = tileMapManager.tileMap.GetTile<Tile>(new Vector3Int(x + i, y+i, 0));
+                    var tileToUpdatePosition = new Vector3Int(x + i, y + j, 0);
+                    Tile tileToUpdate = tileMapManager.tileMap.GetTile<Tile>(tileToUpdatePosition);
                     
-                        tileMapManager.getData(tileToUpdate).temperature += factor;
+                        tileMapManager.getData(tileToUpdatePosition).temperature += factor;
                     
-                    tileMapManager.UpdateTile(tileMapManager.getData(tileToUpdate));
+                    tileMapManager.UpdateTile(tileMapManager.getData(tileToUpdatePosition));
                     
                 }
             }
