@@ -7,41 +7,39 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private int speed;
+
+    private Rigidbody2D rb;
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Movement();
+
     }
 
-    void Movement()
+    void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            Debug.Log("sucess");
-            transform.Translate(0, 1 * speed * Time.deltaTime, 0);
+            rb.MovePosition(new Vector3(0, 1 * speed * Time.deltaTime, 0) + transform.position);
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            Debug.Log("sucess");
-            transform.Translate(0, -1 * speed * Time.deltaTime, 0);
+            rb.MovePosition(new Vector3(0, -1 * speed * Time.deltaTime, 0) + transform.position);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            Debug.Log("sucess");
-            transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
+            rb.MovePosition(new Vector3(-1 * speed * Time.deltaTime, 0, 0) + transform.position);
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            Debug.Log("sucess");
-            transform.Translate(1 * speed * Time.deltaTime, 0, 0);
+            rb.MovePosition(new Vector3(1 * speed * Time.deltaTime, 0, 0) + transform.position);
         }
     }
 }
