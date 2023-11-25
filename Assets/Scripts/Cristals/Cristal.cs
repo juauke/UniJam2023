@@ -9,7 +9,6 @@ public class Cristal : MonoBehaviour
 {
     [SerializeField] private PlayerController player;
 
-    [SerializeField] private float sqrEpsilon = 1;
 
     public enum Element
     {
@@ -32,15 +31,6 @@ public class Cristal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((transform.position - player.transform.position).sqrMagnitude <= sqrEpsilon &&
-            !player.cristal &&
-            Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("pick");
-            player.cristal = this;
-            gameObject.SetActive(false);
-            UpdateTiles();
-        }
     }
 
     public void Place(Vector3 position)
@@ -53,8 +43,14 @@ public class Cristal : MonoBehaviour
         tileMapManager.getData(tile).cristalIsPresent = true;
         gameObject.SetActive(true);
         UpdateTiles();
-        player.cristal = null;
 
+    }
+
+    public void Pick()
+    {
+        Debug.Log("pick");
+        gameObject.SetActive(false);
+        UpdateTiles();
     }
 
     public virtual void UpdateTiles(){}
