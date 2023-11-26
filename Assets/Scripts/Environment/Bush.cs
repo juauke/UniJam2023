@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Bush : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class Bush : MonoBehaviour
     [SerializeField]
     private Sprite bush;
 
+    [SerializeField] 
+    protected TileMapManager tileMapManager;
+
+
     private void Update()
     {
         if(Input.GetKeyUp(KeyCode.I))
@@ -24,6 +29,9 @@ public class Bush : MonoBehaviour
         {
             StartCoroutine(FireUp());
         }
+
+        DetectTemperatureTile(transform.position);
+
     }
     public IEnumerator BurningDown()
     {
@@ -38,10 +46,26 @@ public class Bush : MonoBehaviour
     public IEnumerator FireUp()
     {
         GetComponent<BoxCollider2D>().enabled = true;
-        GetComponent <SpriteRenderer>().sprite = onFire;
+        GetComponent<SpriteRenderer>().sprite = onFire;
 
         yield return new WaitForSecondsRealtime(1);
 
-        GetComponent <SpriteRenderer>().sprite = bush;
+        GetComponent<SpriteRenderer>().sprite = bush;
+    }
+
+    void DetectTemperatureTile(Vector3 position)
+    {
+        Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(position);
+        TileMapManager.DataTile data = tileMapManager.getData(tilePosition);
+
+        if (data.temperature >= 2 && GetComponent<SpriteRenderer>().sprite == bush)
+        {
+            StartCoroutine(BurningDown());
+        }
+
+        else if(data.temperature <=1 && GetComponent<SpriteRenderer>().sprite == ashes)
+        {
+            StartCoroutine(FireUp());
+        }
     }
 }

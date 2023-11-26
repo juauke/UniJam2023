@@ -141,7 +141,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dc4bdf10ef475d04091a3e878f774954, type: 3}
   - {fileID: 21300000, guid: 58b573940c5716e4fbd0ca5eb1335b6e, type: 3}
   - {fileID: 21300000, guid: ae52638933e6d614eb1897dd633d3518, type: 3}
-  - {fileID: 21300000, guid: ae52638933e6d614eb1897dd633d3518, type: 3}
+  - {fileID: 21300000, guid: 9b54dba89ea434a4e93994d88f32b6c6, type: 3}
+  - {fileID: 21300000, guid: 8283068772e5bad4db1d4b9696babfee, type: 3}
+  - {fileID: 21300000, guid: 348cd8e35d9054e4f804a30a1438269c, type: 3}
 --- !u!50 &6234581580885775649
 Rigidbody2D:
   serializedVersion: 4
