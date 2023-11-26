@@ -46,7 +46,7 @@ public class TileMapManager : MonoBehaviour {
                             0)
                     );
                 ;
-                Debug.Log(_data[j, i].tile.name);
+                //Debug.Log(_data[j, i].tile.name);
                 switch (_data[j, i].tile.name) {
                     case "BaseTile":
                         _data[j, i].type = TypeTile.Floor;

@@ -18,6 +18,7 @@ public class FireCrystal : Crystal
     }
 
 
+
     public override void UpdateTiles(int factor)
     {
         Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(transform.position);
@@ -44,4 +45,36 @@ public class FireCrystal : Crystal
             }
         }
     }
+    /*
+    void DetectBushes()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2);
+
+        List<GameObject> detectedBushes = new List<GameObject>();
+
+        foreach (Collider2D collider in colliders)
+        {
+            // Use CompareTag to check if the collider's game object has the specified tag
+            if (collider.CompareTag("Buisson"))
+            {
+                GameObject bushObject = collider.gameObject;
+                detectedBushes.Add(bushObject);
+            }
+        }
+
+        // Now 'detectedBushes' contains all bushes within the detection radius
+        // You can do whatever you want with this list, for example, print their positions
+        foreach (GameObject bushObject in detectedBushes)
+        {
+            Debug.Log("help");
+            bushObject.GetComponent<Bush>().temperature += 1;
+            if (bushObject.GetComponent<Bush>().temperature > 0)
+            {
+                StartCoroutine(bushObject.GetComponent<Bush>().BurningDown());
+            }
+        }
+        
+        
+    }
+    */
 }
