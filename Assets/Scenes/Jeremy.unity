@@ -770,8 +770,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de110102d98fdc40a3bbb36c6738593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ashes: {fileID: 21300000, guid: be70465885619ef4989121109cee8aae, type: 3}
-  onFire: {fileID: 0}
+  ashes: {fileID: 21300000, guid: 21acb69c13e589049807c1a5666bb60a, type: 3}
+  onFire: {fileID: 21300000, guid: 15df5a98d500bee49b5ad22d25da460e, type: 3}
+  bush: {fileID: 21300000, guid: ce9e7d0762a0e7448b3eb514c538f34f, type: 3}
 --- !u!61 &1978560118
 BoxCollider2D:
   m_ObjectHideFlags: 0
