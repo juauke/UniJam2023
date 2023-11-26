@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Transform grabRayStart;
 
 
-    [FormerlySerializedAs("cristal")] public Crystal crystal = null;
+    public Crystal crystal = null;
 
     private Rigidbody2D rb;
 
@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private Sprite[] sprites;
     private SpriteRenderer _spriteRenderer;
+    private int horizontalMovement = 0;
+    private int verticalMovement = 0;
+    private int _currentSprite;
+    private bool _currentFlip;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -39,6 +43,8 @@ public class PlayerController : MonoBehaviour {
             if (crystal) {
                 if (crystal.Place(transform.position + (Vector3)lookingDirection)) {
                     crystal = null;
+                    _spriteRenderer.sprite = sprites[_currentSprite -3];
+                    _spriteRenderer.flipX = _currentFlip;
                     playerAudioManager.PlayDropSound();
                 }
             }
@@ -47,73 +53,73 @@ public class PlayerController : MonoBehaviour {
                     LayerMask.GetMask("Crystal")).collider;
                 if (colliderhit && colliderhit.gameObject.TryGetComponent<Crystal>(out crystal)) {
                     crystal.Pick();
+                    _spriteRenderer.sprite = sprites[_currentSprite +3];
+                    _spriteRenderer.flipX = _currentFlip;
                     playerAudioManager.PlayTakeSound();
                 }
             }
         }
     }
 
-    void FixedUpdate() {
-        int horizontalMovement = 0;
-        int verticalMovement = 0;
+    void FixedUpdate()
+    {
+        verticalMovement = 0;
+        horizontalMovement = 0;
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.W)) {
             verticalMovement++;
-
-            lookingDirection = new Vector2(0, 1);
-            playerAudioManager.PlayStepSound();
-            _spriteRenderer.sprite = sprites[0];
-            _spriteRenderer.flipX = false;
         }
 
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
             verticalMovement--;
-            rb.MovePosition(new Vector3(0, -1 * speed * Time.deltaTime, 0) + transform.position);
-            lookingDirection = new Vector2(0, -1);
-            playerAudioManager.PlayStepSound();
-            _spriteRenderer.sprite = sprites[1];
-            _spriteRenderer.flipX = false;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.A)) {
             horizontalMovement--;
-            rb.MovePosition(new Vector3(-1 * speed * Time.deltaTime, 0, 0) + transform.position);
-            lookingDirection = new Vector2(-1, 0);
-            playerAudioManager.PlayStepSound();
-            _spriteRenderer.sprite = sprites[2];
-            _spriteRenderer.flipX = true;
         }
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
             horizontalMovement++;
-            rb.MovePosition(new Vector3(1 * speed * Time.deltaTime, 0, 0) + transform.position);
-            lookingDirection = new Vector2(1, 0);
-            playerAudioManager.PlayStepSound();
-            _spriteRenderer.sprite = sprites[2];
-            _spriteRenderer.flipX = false;
         }
 
         rb.MovePosition(new Vector3(horizontalMovement, verticalMovement, 0) * (speed * Time.deltaTime) +
                         transform.position);
         playerAudioManager.PlayStepSound();
+        int offsetCrystal = 0;
+        if ((bool)crystal)
+        {
+            offsetCrystal = 3;
+        }
         switch (horizontalMovement) {
             case -1:
-                _spriteRenderer.sprite = sprites[2];
+                _spriteRenderer.sprite = sprites[2 + offsetCrystal];
                 _spriteRenderer.flipX = true;
+                _currentSprite = 2 + offsetCrystal;
+                _currentFlip = true;
+                lookingDirection = new Vector2(-1, 0);
                 break;
             case 1:
-                _spriteRenderer.sprite = sprites[2];
+                _spriteRenderer.sprite = sprites[2 + offsetCrystal];
                 _spriteRenderer.flipX = false;
+                lookingDirection = new Vector2(1, 0);
+                _currentFlip = false;
+                _currentSprite = 2 + offsetCrystal;
                 break;
             default:
                 switch (verticalMovement) {
                     case -1:
-                        _spriteRenderer.sprite = sprites[1];
+                        _spriteRenderer.sprite = sprites[1 + offsetCrystal];
                         _spriteRenderer.flipX = false;
+                        lookingDirection = new Vector2(0, -1);
+                        _currentFlip = false;
+                        _currentSprite = 1 + offsetCrystal;
                         break;
                     case 1:
-                        _spriteRenderer.sprite = sprites[0];
+                        _spriteRenderer.sprite = sprites[offsetCrystal];
                         _spriteRenderer.flipX = false;
+                        lookingDirection = new Vector2(0, 1);
+                        _currentFlip = false;
+                        _currentSprite = offsetCrystal;
                         break;
                     default:
                         break;
