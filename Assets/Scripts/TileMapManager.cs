@@ -13,7 +13,7 @@ public class TileMapManager : MonoBehaviour {
     }
 
     public class DataTile {
-        public Tile tile;
+        public TileBase tile;
         public int temperature = 1;
         public bool crystalIsPresent = false;
         public TypeTile type;
@@ -77,26 +77,31 @@ public class TileMapManager : MonoBehaviour {
         switch (tile.type) {
             case TypeTile.Floor:
                 if (tile.temperature < 1) {
-                    tileMap.SetTile(tile.position, _tileFloor[0]);
+                    //tileMap.SetTile(tile.position, _tileFloor[0]);
+                    tileMap.SetTile(new TileChangeData(tile.position, _tileFloor[0], Color.white, Matrix4x4.identity),true);
                     tile.tile = _tileFloor[0];
                 }
                 else if (tile.temperature > 1) {
-                    tileMap.SetTile(tile.position, _tileFloor[2]);
+                    //tileMap.SetTile(tile.position, _tileFloor[2]);
+                    tileMap.SetTile(new TileChangeData(tile.position, _tileFloor[2], Color.white, Matrix4x4.identity), true);
                     tile.tile = _tileFloor[2];
                 }
                 else {
-                    tileMap.SetTile(tile.position, _tileFloor[1]);
+                    //tileMap.SetTile(tile.position, _tileFloor[1]);
+                    tileMap.SetTile(new TileChangeData(tile.position, _tileFloor[1], Color.white, Matrix4x4.identity), true);
                     tile.tile = _tileFloor[1];
                 }
 
                 break;
             case TypeTile.Water:
                 if (tile.temperature < 1) {
-                    tileMap.SetTile(tile.position, _tileWater[0]);
+                    //tileMap.SetTile(tile.position, _tileWater[0]);
+                    tileMap.SetTile(new TileChangeData(tile.position, _tileWater[0], Color.white, Matrix4x4.identity), true);
                     tile.tile = _tileWater[0];
                 }
                 else {
-                    tileMap.SetTile(tile.position, _tileWater[1]);
+                    //tileMap.SetTile(tile.position, _tileWater[1]);
+                    tileMap.SetTile(new TileChangeData(tile.position, _tileWater[0], Color.white, Matrix4x4.identity), true);
                     tile.tile = _tileWater[1];
                 }
 
