@@ -3,6 +3,7 @@ using UnityEngine;
 public class MainMenuController : MonoBehaviour {
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject creditsMenu;
+    [SerializeField] private GameObject controlsMenu;
 
 
     // Start is called before the first frame update
@@ -18,11 +19,19 @@ public class MainMenuController : MonoBehaviour {
         mainMenu.SetActive(false);
         creditsMenu.SetActive(true);
     }
+    
+    public void ControlsButton() {
+        // Show Controls Menu
+        mainMenu.SetActive(false);
+        controlsMenu.SetActive(true);
+    }
 
     public void MainMenuButton() {
         // Show Main Menu
         mainMenu.SetActive(true);
+        
         creditsMenu.SetActive(false);
+        controlsMenu.SetActive(false);
     }
 
     public void QuitButton() {
