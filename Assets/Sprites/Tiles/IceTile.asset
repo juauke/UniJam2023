@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: IceTile
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 9c6cfbd1259f5624f852db0465ffdf47, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59467f570d6363f40aca9c8e5c3a3ef4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -33,4 +33,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 0
+  m_ColliderType: 1
