@@ -30,6 +30,7 @@ public class Crystal : MonoBehaviour {
         Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(position);
         Vector3 crystalPosition = tileMapManager.tileMap.GetCellCenterLocal(tilePosition);
         TileMapManager.DataTile data = tileMapManager.getData(tilePosition);
+
         if (!data.crystalIsPresent && data.type == TileMapManager.TypeTile.Floor) {
             transform.position = crystalPosition;
             data.crystalIsPresent = true;
