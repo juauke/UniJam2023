@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 71632453302347892, guid: 652f5ec748a98504dbc232d16d49bc7d, type: 3}
+      propertyPath: tileMapManager
+      value: 
+      objectReference: {fileID: 573848427}
     - target: {fileID: 2481673541852532174, guid: 652f5ec748a98504dbc232d16d49bc7d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.222075
