@@ -101,7 +101,7 @@ public class TileMapManager : MonoBehaviour {
                 }
                 else {
                     //tileMap.SetTile(tile.position, _tileWater[1]);
-                    tileMap.SetTile(new TileChangeData(tile.position, _tileWater[0], Color.white, Matrix4x4.identity), true);
+                    tileMap.SetTile(new TileChangeData(tile.position, _tileWater[1], Color.white, Matrix4x4.identity), true);
                     tile.tile = _tileWater[1];
                 }
 
