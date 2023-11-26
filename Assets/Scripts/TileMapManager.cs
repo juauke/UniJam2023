@@ -13,11 +13,12 @@ public class TileMapManager : MonoBehaviour {
     }
 
     public class DataTile {
-        public TileBase tile;
+        public Tile tile;
         public int temperature = 1;
         public bool crystalIsPresent = false;
         public TypeTile type;
         public Vector3Int position;
+        public SpriteRenderer spriteTile;
     }
 
     [SerializeField] private Tile[] _tileFloor;
@@ -25,6 +26,9 @@ public class TileMapManager : MonoBehaviour {
     [SerializeField] private Tile[] _tileWater;
 
     [SerializeField] public Tilemap tileMap;
+
+    [SerializeField]
+    private GameObject _spriteTile;
 
     public Vector2Int topRight;
 
@@ -45,26 +49,33 @@ public class TileMapManager : MonoBehaviour {
                             topRight.y - j,
                             0)
                     );
+                _data[j, i].spriteTile = Instantiate(_spriteTile,tileMap.GetCellCenterLocal(_data[j, i].position),Quaternion.identity).GetComponent<SpriteRenderer>();
                 ;
                 //Debug.Log(_data[j, i].tile.name);
                 switch (_data[j, i].tile.name) {
                     case "BaseTile":
                         _data[j, i].type = TypeTile.Floor;
+                        _data[j, i].spriteTile.sprite = _tileFloor[1].sprite;
                         break;
                     case "FireTile":
                         _data[j, i].type = TypeTile.Floor;
+
+                        _data[j, i].spriteTile.sprite = _tileFloor[2].sprite;
                         break;
                     case "IceTile":
                         _data[j, i].type = TypeTile.Floor;
+                        _data[j, i].spriteTile.sprite = _tileFloor[0].sprite;
                         break;
                     case "BaseWall":
                         _data[j, i].type = TypeTile.Wall;
                         break;
                     case "BaseWater":
                         _data[j, i].type = TypeTile.Water;
+                        _data[j, i].spriteTile.sprite = _tileWater[1].sprite;
                         break;
                     case "FrozenWater":
                         _data[j, i].type = TypeTile.Water;
+                        _data[j, i].spriteTile.sprite = _tileWater[0].sprite;
                         break;
                     default:
                         break;
@@ -84,18 +95,21 @@ public class TileMapManager : MonoBehaviour {
                     tileMap.SetTile(new TileChangeData(tile.position, _tileFloor[0], Color.white, Matrix4x4.identity),
                         true);
                     tile.tile = _tileFloor[0];
+                    tile.spriteTile.sprite = _tileFloor[0].sprite;
                 }
                 else if (tile.temperature > 1) {
                     //tileMap.SetTile(tile.position, _tileFloor[2]);
                     tileMap.SetTile(new TileChangeData(tile.position, _tileFloor[2], Color.white, Matrix4x4.identity),
                         true);
                     tile.tile = _tileFloor[2];
+                    tile.spriteTile.sprite = _tileFloor[2].sprite;
                 }
                 else {
                     //tileMap.SetTile(tile.position, _tileFloor[1]);
                     tileMap.SetTile(new TileChangeData(tile.position, _tileFloor[1], Color.white, Matrix4x4.identity),
                         true);
                     tile.tile = _tileFloor[1];
+                    tile.spriteTile.sprite = _tileFloor[1].sprite;
                 }
 
                 break;
@@ -105,12 +119,14 @@ public class TileMapManager : MonoBehaviour {
                     tileMap.SetTile(new TileChangeData(tile.position, _tileWater[0], Color.white, Matrix4x4.identity),
                         true);
                     tile.tile = _tileWater[0];
+                    tile.spriteTile.sprite = _tileWater[0].sprite;
                 }
                 else {
                     //tileMap.SetTile(tile.position, _tileWater[1]);
                     tileMap.SetTile(new TileChangeData(tile.position, _tileWater[1], Color.white, Matrix4x4.identity),
                         true);
                     tile.tile = _tileWater[1];
+                    tile.spriteTile.sprite = _tileWater[1].sprite;
                 }
 
                 break;

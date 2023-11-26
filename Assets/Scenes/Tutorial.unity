@@ -17205,6 +17205,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2018809991831287594, guid: 6ff9fd0135245604793b28c9fe0dedb7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6470203001382754359, guid: 6ff9fd0135245604793b28c9fe0dedb7, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -17462,6 +17466,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 94175b92188c1574ea969901e678fbe4, type: 2}
   - {fileID: 11400000, guid: 63f0faef34b075544b6530bfa5009949, type: 2}
   tileMap: {fileID: 573848430}
+  _spriteTile: {fileID: 281964663113663086, guid: 9f86c680f1dfb6345bf1824a14a95308, type: 3}
   topRight: {x: 5, y: 5}
   bottomLeft: {x: -14, y: -14}
 --- !u!19719996 &573848428
@@ -26171,6 +26176,10 @@ PrefabInstance:
     - target: {fileID: 1619230352007408045, guid: 6ff9fd0135245604793b28c9fe0dedb7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018809991831287594, guid: 6ff9fd0135245604793b28c9fe0dedb7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6470203001382754359, guid: 6ff9fd0135245604793b28c9fe0dedb7, type: 3}
       propertyPath: m_Layer
