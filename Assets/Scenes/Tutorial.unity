@@ -17025,7 +17025,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5dbfb1e678a81d49bb3467d76dd9f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  currentScene:
+    m_Handle: 0
 --- !u!61 &195548577
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17466,7 +17467,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 94175b92188c1574ea969901e678fbe4, type: 2}
   - {fileID: 11400000, guid: 63f0faef34b075544b6530bfa5009949, type: 2}
   tileMap: {fileID: 573848430}
-  _spriteTile: {fileID: 281964663113663086, guid: 9f86c680f1dfb6345bf1824a14a95308, type: 3}
+  _spriteTile: {fileID: 281964663113663086, guid: e6fd85deb17ce2c4ba2af36b51d475a5, type: 3}
   topRight: {x: 5, y: 5}
   bottomLeft: {x: -14, y: -14}
 --- !u!19719996 &573848428

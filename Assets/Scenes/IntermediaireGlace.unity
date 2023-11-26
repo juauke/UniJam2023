@@ -664,6 +664,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 94175b92188c1574ea969901e678fbe4, type: 2}
   - {fileID: 11400000, guid: 63f0faef34b075544b6530bfa5009949, type: 2}
   tileMap: {fileID: 588395126}
+  _spriteTile: {fileID: 281964663113663086, guid: e6fd85deb17ce2c4ba2af36b51d475a5, type: 3}
   topRight: {x: 13, y: 4}
   bottomLeft: {x: -6, y: -15}
 --- !u!19719996 &588395124
