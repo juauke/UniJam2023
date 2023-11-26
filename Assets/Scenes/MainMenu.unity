@@ -159,7 +159,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 808, y: 454.49997}
+  m_SizeDelta: {x: 1920.0001, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &187686247
 MonoBehaviour:
@@ -1154,7 +1154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1108005013
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1650,6 +1650,14 @@ MonoBehaviour:
   audioSource: {fileID: 2132582425}
   selectSound: {fileID: 8300000, guid: 948f15645b5d4674bafd3807c7e7787b, type: 3}
   startSound: {fileID: 8300000, guid: a853734bbfc4155489da93a5716fc217, type: 3}
+  stepSound: {fileID: 0}
+  iceSound: {fileID: 0}
+  fireSound: {fileID: 0}
+  takeSound: {fileID: 0}
+  dropSound: {fileID: 0}
+  climbLadderSound: {fileID: 0}
+  victorySound: {fileID: 0}
+  thunderSound: {fileID: 0}
 --- !u!81 &1427850911
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1673,7 +1681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1436315656
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2117,7 +2125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 10}
+  m_AnchoredPosition: {x: 0, y: 88}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1948289633
@@ -2140,9 +2148,32 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Joris CASIN as Level and Game Designer\nJustin BABONNEAU as Manager and
-    Menu Designer\nPierre CURALLUCCI DE PERRETTI, J\xE9r\xE9my X and Joris CASIN
-    as Developers \nAntoine X as Music and Sound Designer\nDiane X as Artist"
+  m_text: 'Justin BABONNEAU as Manager and Menu Designer
+
+
+    Joris CASIN as Developer
+
+
+    Pierre
+    CURALLUCCI DE PERRETTI as Developer
+
+
+    Wassim CHOMEUR as Graphist and Level
+    Designer
+
+
+    Mounir Ben LAHCEN as Level Designer
+
+
+    Jeremy LENOIR as Game
+    Designer and Developer
+
+
+    Antoine POMMIERS as Sound and Music Designer
+
+
+    Diane
+    ZINK as Lead Artist'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
