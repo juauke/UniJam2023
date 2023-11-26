@@ -132,11 +132,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  sqrEpsilon: 1
-  cristal: {fileID: 0}
+  sqrEpsilon: 2
+  grabRayStart: {fileID: 5606536086295769943}
+  crystal: {fileID: 0}
   pauseMenuCanvas: {fileID: 0}
   playerAudioManager: {fileID: 0}
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: dc4bdf10ef475d04091a3e878f774954, type: 3}
+  - {fileID: 21300000, guid: 58b573940c5716e4fbd0ca5eb1335b6e, type: 3}
+  - {fileID: 21300000, guid: ae52638933e6d614eb1897dd633d3518, type: 3}
+  - {fileID: 21300000, guid: ae52638933e6d614eb1897dd633d3518, type: 3}
 --- !u!50 &6234581580885775649
 Rigidbody2D:
   serializedVersion: 4
