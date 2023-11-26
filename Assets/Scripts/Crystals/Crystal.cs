@@ -29,7 +29,7 @@ public class Crystal : MonoBehaviour {
     public bool Place(Vector3 position) {
         Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(position);
         Vector3 crystalPosition = tileMapManager.tileMap.GetCellCenterLocal(tilePosition);
-        TileMapManager.Data_Tile data = tileMapManager.getData(tilePosition);
+        TileMapManager.DataTile data = tileMapManager.getData(tilePosition);
         if (!data.crystalIsPresent && data.type == TileMapManager.TypeTile.Floor) {
             transform.position = crystalPosition;
             data.crystalIsPresent = true;
@@ -43,7 +43,7 @@ public class Crystal : MonoBehaviour {
 
     public void Pick() {
         Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(transform.position);
-        TileMapManager.Data_Tile data = tileMapManager.getData(tilePosition);
+        TileMapManager.DataTile data = tileMapManager.getData(tilePosition);
         data.crystalIsPresent = false;
         gameObject.SetActive(false);
         UpdateTiles(1);
