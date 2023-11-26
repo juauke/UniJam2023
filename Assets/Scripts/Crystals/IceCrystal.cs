@@ -23,11 +23,15 @@ public class IceCrystal : Crystal
         Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(transform.position);
         int x = tilePosition.x;
         int y = tilePosition.y;
+        int xmin = tileMapManager.bottomLeft.x;
+        int xmax = tileMapManager.topRight.x;
+        int ymin = tileMapManager.bottomLeft.y;
+        int ymax = tileMapManager.topRight.y;
         for (int i = -2; i <= 2; i++)
         {
             for (int j = -2; j <= 2; j++)
             {
-                if (math.abs(i * j) < 4)
+                if (math.abs(i * j) < 4 && x+i >= xmin && x+i<=xmax && y+j >= ymin && y+j <= ymax)
                 {
                     var tileToUpdatePosition = new Vector3Int(x + i, y + j, 0);
                     Tile tileToUpdate = tileMapManager.tileMap.GetTile<Tile>(tileToUpdatePosition);
