@@ -5,113 +5,97 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TileMapManager : MonoBehaviour
-{
-    public enum TypeTile
-    {
+public class TileMapManager : MonoBehaviour {
+    public enum TypeTile {
         Floor = 0,
         Wall = 1,
         Water = 2
     }
 
-    public class DataTile
-    {
+    public class DataTile {
         public Tile tile;
         public int temperature = 1;
-        public bool crystalIsPresent=false;
+        public bool crystalIsPresent = false;
         public TypeTile type;
         public Vector3Int position;
     }
-    [SerializeField]
-    private Tile[] _tileFloor;
 
-    [SerializeField]
-    private Tile[] _tileWater;
+    [SerializeField] private Tile[] _tileFloor;
 
-    [SerializeField]
-    public Tilemap tileMap;
+    [SerializeField] private Tile[] _tileWater;
+
+    [SerializeField] public Tilemap tileMap;
 
     public Vector2Int topRight;
 
     public Vector2Int bottomLeft;
-    
-    public DataTile[,] _data=new DataTile[50,50];
 
-    public void Awake()
-    {
+    public DataTile[,] _data = new DataTile[50, 50];
+
+    public void Awake() {
         var size = topRight - bottomLeft;
-        for (int i = 0; i <= size.x; i++)
-        {
-            for (int j = 0; j <= size.y; j++)
-            {
-                _data[j,i]=new DataTile();
-                _data[j,i].position= new Vector3Int(bottomLeft.x + i, topRight.y - j, 0);
-                _data[j,i].tile = 
+        for (int i = 0; i <= size.x; i++) {
+            for (int j = 0; j <= size.y; j++) {
+                _data[j, i] = new DataTile();
+                _data[j, i].position = new Vector3Int(bottomLeft.x + i, topRight.y - j, 0);
+                _data[j, i].tile =
                     tileMap.GetTile<Tile>(
-                    new Vector3Int(
-                        bottomLeft.x + i, 
-                        topRight.y - j,
-                        0)
-                    );;
+                        new Vector3Int(
+                            bottomLeft.x + i,
+                            topRight.y - j,
+                            0)
+                    );
+                ;
                 Debug.Log(_data[j, i].tile.name);
-                switch (_data[j,i].tile.name)
-                { 
-                    case "casebase" :
-                        _data[j,i].type = TypeTile.Floor;
+                switch (_data[j, i].tile.name) {
+                    case "BaseTile":
+                        _data[j, i].type = TypeTile.Floor;
                         break;
-                    case "casefeu":
-                        _data[j,i].type = TypeTile.Floor;
+                    case "FireTile":
+                        _data[j, i].type = TypeTile.Floor;
                         break;
-                    case "caseglace":
-                        _data[j,i].type = TypeTile.Floor;
+                    case "IceTile":
+                        _data[j, i].type = TypeTile.Floor;
                         break;
-                    case "murbase":
-                        _data[j,i].type = TypeTile.Wall;
+                    case "BaseWall":
+                        _data[j, i].type = TypeTile.Wall;
                         break;
-                    case "eaubase":
-                        _data[j,i].type = TypeTile.Water;
+                    case "BaseWater":
+                        _data[j, i].type = TypeTile.Water;
                         break;
-                    case "eaugel�e":
-                        _data[j,i].type = TypeTile.Water;
+                    case "FrozenWater":
+                        _data[j, i].type = TypeTile.Water;
                         break;
                     default:
                         break;
-
                 }
             }
         }
-
     }
 
-    public void UpdateTile(DataTile tile)
-    {
-        switch (tile.type)
-        {
+    public void UpdateTile(DataTile tile) {
+        switch (tile.type) {
             case TypeTile.Floor:
-                if (tile.temperature < 1)
-                {
+                if (tile.temperature < 1) {
                     tileMap.SetTile(tile.position, _tileFloor[0]);
                     tile.tile = _tileFloor[0];
                 }
-                else if (tile.temperature > 1)
-                {
+                else if (tile.temperature > 1) {
                     tileMap.SetTile(tile.position, _tileFloor[2]);
                     tile.tile = _tileFloor[2];
                 }
-                else
-                {
+                else {
                     tileMap.SetTile(tile.position, _tileFloor[1]);
                     tile.tile = _tileFloor[1];
                 }
+
                 break;
             case TypeTile.Water:
-                if (tile.temperature < 1)
-                {
+                if (tile.temperature < 1) {
                     tileMap.SetTile(tile.position, _tileWater[0]);
                     tile.tile = _tileWater[0];
                 }
-                else
-                {
+                else {
                     tileMap.SetTile(tile.position, _tileWater[1]);
                     tile.tile = _tileWater[1];
                 }
@@ -120,8 +104,7 @@ public class TileMapManager : MonoBehaviour
         }
     }
 
-    public DataTile getData(Vector3Int tilePosition)
-    {
-        return _data[topRight.y-(int)tilePosition.y,(int)tilePosition.x-bottomLeft.x];
+    public DataTile getData(Vector3Int tilePosition) {
+        return _data[topRight.y - (int)tilePosition.y, (int)tilePosition.x - bottomLeft.x];
     }
 }
