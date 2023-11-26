@@ -10,19 +10,38 @@ public class Bush : MonoBehaviour
     [SerializeField]
     private Sprite onFire;
 
+    [SerializeField]
+    private Sprite bush;
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
+        if(Input.GetKeyUp(KeyCode.I))
         {
-            Debug.Log("sucess");
-            IsOnFire();
+            StartCoroutine(BurningDown());
+        }
+
+        if (Input.GetKeyUp(KeyCode.O))
+        {
+            StartCoroutine(FireUp());
         }
     }
-    public void IsOnFire()
+    public IEnumerator BurningDown()
     {
         GetComponent<SpriteRenderer>().sprite = onFire;
-        //wait 1s
+
+        yield return new WaitForSecondsRealtime(1);
+
         GetComponent<SpriteRenderer>().sprite = ashes;
         GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    public IEnumerator FireUp()
+    {
+        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent <SpriteRenderer>().sprite = onFire;
+
+        yield return new WaitForSecondsRealtime(1);
+
+        GetComponent <SpriteRenderer>().sprite = bush;
     }
 }
