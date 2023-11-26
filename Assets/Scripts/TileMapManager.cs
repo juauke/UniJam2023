@@ -14,11 +14,11 @@ public class TileMapManager : MonoBehaviour
         Water = 2
     }
 
-    public class Data_Tile
+    public class DataTile
     {
         public Tile tile;
         public int temperature = 1;
-        public bool cristalIsPresent=false;
+        public bool crystalIsPresent=false;
         public TypeTile type;
         public Vector3Int position;
     }
@@ -35,7 +35,7 @@ public class TileMapManager : MonoBehaviour
 
     public Vector2Int bottomLeft;
     
-    public Data_Tile[,] _data=new Data_Tile[50,50];
+    public DataTile[,] _data=new DataTile[50,50];
 
     public void Awake()
     {
@@ -44,7 +44,7 @@ public class TileMapManager : MonoBehaviour
         {
             for (int j = 0; j <= size.y; j++)
             {
-                _data[j,i]=new Data_Tile();
+                _data[j,i]=new DataTile();
                 _data[j,i].position= new Vector3Int(bottomLeft.x + i, topRight.y - j, 0);
                 _data[j,i].tile = 
                     tileMap.GetTile<Tile>(
@@ -83,7 +83,7 @@ public class TileMapManager : MonoBehaviour
 
     }
 
-    public void UpdateTile(Data_Tile tile)
+    public void UpdateTile(DataTile tile)
     {
         switch (tile.type)
         {
@@ -120,7 +120,7 @@ public class TileMapManager : MonoBehaviour
         }
     }
 
-    public Data_Tile getData(Vector3Int tilePosition)
+    public DataTile getData(Vector3Int tilePosition)
     {
         return _data[topRight.y-(int)tilePosition.y,(int)tilePosition.x-bottomLeft.x];
     }
