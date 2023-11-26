@@ -5,13 +5,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Crystal : MonoBehaviour
-{
+public class Crystal : MonoBehaviour {
     [SerializeField] private PlayerController player;
 
 
-    public enum Element
-    {
+    public enum Element {
         Ice,
         Fire,
         Elec
@@ -23,33 +21,33 @@ public class Crystal : MonoBehaviour
     public Element type;
 
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    void Start() { }
 
     // Update is called once per frame
-    void Update()
-    {
-    }
+    void Update() { }
 
-    public void Place(Vector3 position)
-    {
+    public bool Place(Vector3 position) {
         Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(position);
-        Vector3 cristalPosition = tileMapManager.tileMap.GetCellCenterLocal(tilePosition);
-        transform.position = cristalPosition;
-        tileMapManager.getData(tilePosition).cristalIsPresent = true;
-        gameObject.SetActive(true);
-        UpdateTiles(-1);
+        Vector3 crystalPosition = tileMapManager.tileMap.GetCellCenterLocal(tilePosition);
+        TileMapManager.Data_Tile data = tileMapManager.getData(tilePosition);
+        if (!data.crystalIsPresent && data.type == TileMapManager.TypeTile.Floor) {
+            transform.position = crystalPosition;
+            data.crystalIsPresent = true;
+            gameObject.SetActive(true);
+            UpdateTiles(-1);
+            return true;
+        }
 
+        return false;
     }
 
-    public void Pick()
-    {
+    public void Pick() {
+        Vector3Int tilePosition = tileMapManager.tileMap.WorldToCell(transform.position);
+        TileMapManager.Data_Tile data = tileMapManager.getData(tilePosition);
+        data.crystalIsPresent = false;
         gameObject.SetActive(false);
         UpdateTiles(1);
     }
 
-    public virtual void UpdateTiles(int factor){}
-    
+    public virtual void UpdateTiles(int factor) { }
 }
