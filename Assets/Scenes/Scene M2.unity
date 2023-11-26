@@ -599,6 +599,14 @@ PrefabInstance:
       propertyPath: playerAudioManager
       value: 
       objectReference: {fileID: 374545656}
+    - target: {fileID: 7846666440674267383, guid: cc52e9485405e124286b99e16b0557b9, type: 3}
+      propertyPath: sprites.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7846666440674267383, guid: cc52e9485405e124286b99e16b0557b9, type: 3}
+      propertyPath: sprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 348cd8e35d9054e4f804a30a1438269c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

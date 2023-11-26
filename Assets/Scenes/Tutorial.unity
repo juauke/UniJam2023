@@ -17467,7 +17467,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 94175b92188c1574ea969901e678fbe4, type: 2}
   - {fileID: 11400000, guid: 63f0faef34b075544b6530bfa5009949, type: 2}
   tileMap: {fileID: 573848430}
-  _spriteTile: {fileID: 281964663113663086, guid: e6fd85deb17ce2c4ba2af36b51d475a5, type: 3}
+  _spriteTile: {fileID: 281964663113663086, guid: 4deb70d7688d51e45b80ad5a83f596fe, type: 3}
   topRight: {x: 5, y: 5}
   bottomLeft: {x: -14, y: -14}
 --- !u!19719996 &573848428
@@ -26815,7 +26815,7 @@ PrefabInstance:
       objectReference: {fileID: 1823815994}
     - target: {fileID: 7846666440674267383, guid: cc52e9485405e124286b99e16b0557b9, type: 3}
       propertyPath: sprites.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7846666440674267383, guid: cc52e9485405e124286b99e16b0557b9, type: 3}
       propertyPath: sprites.Array.data[0]
@@ -26832,7 +26832,11 @@ PrefabInstance:
     - target: {fileID: 7846666440674267383, guid: cc52e9485405e124286b99e16b0557b9, type: 3}
       propertyPath: sprites.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: ae52638933e6d614eb1897dd633d3518, type: 3}
+      objectReference: {fileID: 21300000, guid: 9b54dba89ea434a4e93994d88f32b6c6, type: 3}
+    - target: {fileID: 7846666440674267383, guid: cc52e9485405e124286b99e16b0557b9, type: 3}
+      propertyPath: sprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 348cd8e35d9054e4f804a30a1438269c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
